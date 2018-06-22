@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>2018年夏キャンプコスト計算サイト</title>
+    <style type="text/css">
+    body{
+      margin:
+    }
+    #button{
+      background-color: #3a8cd8;
+      border: none;
+      color:#fff;
+      font-size:18px;
+      padding: 6px 12px;
+      border-radius: 4px;
+      margin: 12px;
+    }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1>聖書キリスト教会東京教会ファミリーキャンプ2018　コスト計算サイト</h1>
+      <form name="form">
+        今年のキャンプの、実際にかかるコストを計算するWebサイトです。人数と宿泊数を入力すると、コストが表示されます。<br>
+        大人（n歳以上）<input type="text" name="adalt" value="">人<br>
+        小中高生 <input type="text" name="kids" value="">人<br>
+        未就学児（n2歳以上） <input type="text" name="baby" value="">人<br>
+        宿泊日数 <input type="radio" name="days" value=1>1泊 <input type="radio" name="days" value=2>2泊<br>
+        <input type="button" id="button" value="コストを計算する" onclick="keisan()"><br>
+        <span id="kekka"></span>
+      <script type="text/javascript">
+      var a_cost=100;
+      var k_cost=80;
+      var b_cost=50;
+      function keisan() {
+          var adalt = form.adalt.value;
+          var kids = form.kids.value;
+          var baby = form.baby.value;
+          for(var i=0;i<form.days.length;i++){
+            if(form.days[i].checked == true){
+                var days = form.days[i].value;
+            }
+          }
+          target = document.getElementById("kekka");
+          target.innerHTML = "大人一泊"+a_cost+"円×"+adalt+"人+"+"<br>"+"小中高生一泊"+k_cost+"円×"+kids+"人+"+"<br>"+"未就学児一泊"+b_cost+"円×"+baby+"人で、"+"<br>"+days+"泊で計算すると"+days*(adalt*a_cost+kids*k_cost+baby*b_cost)+"円です";
+      }
+      </script>
+    </form>
+  </center>
+  </body>
+</html>
