@@ -61,10 +61,11 @@
           var shokuhi = [1930,2510,4440];
           var cost = parseInt((a+b)*500+(a+b)*100+a*2600+a*shokuhi[shokuhi_day], 10);
           target = document.getElementById("kekka");
-          target.innerHTML = "保険代"+(a+b)+"人分"+(a+b)*500+"円 + プロジェクト費"+(a+b)+"人分"+(a+b)*100+"円 + 宿泊費"+a+"人分"+days+"泊"+a*2600*days+"円 + 食費"+a+"人分"+a*shokuhi[shokuhi_day]+"円 ="+cost+"円";
+          target.innerHTML = "コストは　<br>保険代"+(a+b)+"人分"+(a+b)*500+"円 + プロジェクト費"+(a+b)+"人分"+(a+b)*100+"円 + 宿泊費"+a+"人分"+days+"泊"+a*2600*days+"円 + 食費"+a+"人分"+a*shokuhi[shokuhi_day]+"円 ="+cost+"円 <br>です。";
       }
       </script>
     </form>
+    <h2>コスト表</h2>
     <table>
       <tr>
         <th>内容</th>
