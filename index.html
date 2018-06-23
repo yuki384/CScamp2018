@@ -16,6 +16,13 @@
       border-radius: 4px;
       margin: 12px;
     }
+    table{
+      margin: 24px;
+      border-collapse: collapse;
+    }
+    th,td{
+      border: solid 1px black;
+    }
     </style>
   </head>
   <body>
@@ -23,30 +30,58 @@
       <h1>聖書キリスト教会東京教会ファミリーキャンプ2018　コスト計算サイト</h1>
       <form name="form">
         今年のキャンプの、実際にかかるコストを計算するWebサイトです。人数と宿泊数を入力すると、コストが表示されます。<br>
-        大人（n歳以上）<input type="text" name="adalt" value="">人<br>
-        小中高生 <input type="text" name="kids" value="">人<br>
-        未就学児（n2歳以上） <input type="text" name="baby" value="">人<br>
-        宿泊日数 <input type="radio" name="days" value=1>1泊 <input type="radio" name="days" value=2>2泊<br>
+        参加者（3歳以上）<input type="number" name="adalt" value="0" min="0">人<br>
+        乳児（3歳未満） <input type="number" name="baby" value="0" min="0">人<br>
+        宿泊日数 <input type="radio" name="days" value=1 >前半1泊 <input type="radio" name="days" value=2 >後半1泊 <input type="radio" name="days" value=3 >2泊（全日参加）<br>
         <input type="button" id="button" value="コストを計算する" onclick="keisan()"><br>
         <span id="kekka"></span>
       <script type="text/javascript">
       var a_cost=100;
-      var k_cost=80;
       var b_cost=50;
       function keisan() {
-          var adalt = form.adalt.value;
-          var kids = form.kids.value;
-          var baby = form.baby.value;
+          var a = parseInt(form.adalt.value, 10);
+          var b = parseInt(form.baby.value, 10);
           for(var i=0;i<form.days.length;i++){
             if(form.days[i].checked == true){
+              if (form.days[i].value > 1) {
+                var days = form.days[i].value - 1;
+              }else{
                 var days = form.days[i].value;
+              }
+              var shokuhi_day = form.days[i].value - 1;
             }
           }
+          var shokuhi = [1930,2510,4440];
+          var cost = parseInt((a+b)*500+(a+b)*100+a*2600+a*shokuhi[shokuhi_day], 10);
           target = document.getElementById("kekka");
-          target.innerHTML = "大人一泊"+a_cost+"円×"+adalt+"人+"+"<br>"+"小中高生一泊"+k_cost+"円×"+kids+"人+"+"<br>"+"未就学児一泊"+b_cost+"円×"+baby+"人で、"+"<br>"+days+"泊で計算すると"+days*(adalt*a_cost+kids*k_cost+baby*b_cost)+"円です";
+          target.innerHTML = "保険代"+(a+b)+"人分"+(a+b)*500+"円 + プロジェクト費"+(a+b)+"人分"+(a+b)*100+"円 + 宿泊費"+a+"人分"+days+"泊"+a*2600*days+"円 + 食費"+a+"人分"+a*shokuhi[shokuhi_day]+"円 ="+cost+"円";
       }
       </script>
     </form>
+    <table>
+      <tr>
+        <th>内容</th>
+        <th>金額</th>
+      </tr>
+      <tr>
+        <td>保険代 <br>宿泊日数、年齢に関わらず一律</td>
+        <td>500円/人</td>
+      </tr>
+      <tr>
+        <td>プロジェクト費 <br>宿泊日数、年齢に関わらず一律</td>
+        <td>100円/人</td>
+      </tr>
+      <tr>
+        <td>宿泊費 <br>3歳以上一律。3歳未満は無料</td>
+        <td>1泊2,600円/人</td>
+      </tr>
+      <tr>
+        <td>食費 <br>3歳以上一律。3歳未満は無料</td>
+        <td>前半1泊の方　初日夜(1,190円) ＋ 2日目朝(540円) ＋ 2日目昼(200円) = 1,930円<br>
+        後半1泊の方　2日目夜(1,190円) ＋ 3日目朝(540円) ＋ 3日目昼（780円）= 2,510円<br>
+        全部参加の方　初日夜(1,190円) ＋ 2日目朝(540円) ＋ 2日目昼(200円) ＋ 2日目夜(1,190円) ＋ 2日目朝(540円) ＋ 3日目昼（780円）= 4,440円</td>
+      </tr>
+    </table>
   </center>
   </body>
 </html>
